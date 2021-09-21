@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.7.3;
+pragma solidity ^0.8.7;
 
 contract Functions {
     uint256 public data;
@@ -11,8 +11,13 @@ contract Functions {
         owner = msg.sender;
     }
     
-    function setData(uint256 _newData) public onlyOwner{
+    function setComputedData(uint256 _newData) external onlyOwner{
         data = computeData(_newData);
+        setData(data);
+    }
+
+    function setData(uint256 _newData) public onlyOwner{
+        data = _newData;
     }
     
     function computeData(uint256 _data) internal pure returns (uint256){
